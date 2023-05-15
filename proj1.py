@@ -17,7 +17,8 @@ output=[]
 for entry in interacting:
     if entry['stringId_A'] not in output:
         output.append(entry['stringId_A'])
-      
+        
+#finding interacting sequences and assembling comparison files      
 for entry in output:
     entry = entry.removeprefix('9606.')
     FindSeq = requests.get(f'https://rest.ensembl.org/sequence/id/{entry}?content-type=text/x-fasta;species=homo_sapiens;type=cds').text 
