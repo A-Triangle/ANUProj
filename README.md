@@ -1,6 +1,5 @@
 ## A collection (?) of python for structural biochem 
 
-# proj1
+# proj1.py
 
-A simple program for pulling down all of the known interacting proteins from a target (specified as a command line argument with the file).
-Progam will fetch the aa sequence of each interacting protein and output a fasta file to be run through alphafold multimer. 
+A simple program which will search string for known interactions with a protein specified in the command line, then return a series of fasta files with the sequence of the target and interacting proteins. 
