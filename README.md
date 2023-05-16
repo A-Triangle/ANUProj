@@ -7,4 +7,4 @@ A simple program which will search string for known interactions with a protein 
 # mutated_comparison.py
 
 performs same as above however also expects the position and amino acid mutation present in the variant and replaces wt with said specifications for comparison. formatted 'python3.
-Mutated_comparison.py [aa number] [aa letter]
+Mutated_comparison.py [aa number] [aa letter]'
