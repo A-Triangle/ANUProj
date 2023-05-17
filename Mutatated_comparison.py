@@ -22,13 +22,13 @@ def main():
         os.mkdir(path)
         
     query = queryprotein(sys.argv, path)
-    interactingproteins = assembleinteracting(query):
+    interactingproteins = assembleinteracting(query)
 
     for gene in interactingproteins:
         FindSeq = requests.get(f'https://rest.ensembl.org/sequence/id/{gene["EMBL"]}?content-type=text/x-fasta;species=homo_sapiens;type=cds').text 
     
         with open(path+'/Comp-'+gene["GENE_NAME"]+'-'+sys.argv[1]+'.fasta', 'w') as handle:
-            handle.write(str(query))
+            SeqIO.write(query, handle, 'fasta')
             handle.write(FindSeq)
 
 def queryprotein(input, path):
@@ -58,8 +58,7 @@ def queryprotein(input, path):
 def assembleinteracting(query):
     
     interacting = requests.get(f'https://string-db.org/api/json/network?identifiers={query.id}').json()
-    print(interacting)
-    #scrubbing output of repeat proteins
+
     output=[]
     for entry in interacting:
         if entry['stringId_A'] not in output:
