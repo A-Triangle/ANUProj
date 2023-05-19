@@ -2,8 +2,6 @@ import sys
 import requests
 import os
 import os
-from Bio import SeqIO
-from Bio.Seq import MutableSeq
 
 #finding string preferred identifier for query proten
 ProteinMatch = requests.get(f'https://string-db.org/api/json/get_string_ids?identifiers={sys.argv[1]}').json()

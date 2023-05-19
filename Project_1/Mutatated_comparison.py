@@ -2,7 +2,7 @@ import sys
 import requests
 import os
 import shutil
-from Bio import SeqIO
+from Bio import SeqIO-*                                             
 from Bio import Seq
 from Bio.Seq import MutableSeq
 
@@ -58,8 +58,7 @@ def queryprotein(input, path):
 def assembleinteracting(query):
     
     interacting = requests.get(f'https://string-db.org/api/json/network?identifiers={query.id}').json()
-    print(interacting)
-    #scrubbing output of repeat proteins
+
     output=[]
     for entry in interacting:
         if entry['stringId_A'] not in output:
