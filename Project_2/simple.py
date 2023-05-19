@@ -13,7 +13,7 @@ def parse_pae_file(pae_json_file):
     elif 'predicted_aligned_error' in data:
         # New PAE format.
         matrix = numpy.array(data['predicted_aligned_error'], dtype=numpy.float64)
-    else:
+    else:print(matrix.shape, matrix.nbytes)
         raise ValueError('Invalid PAE JSON format.')
     
     return matrix
