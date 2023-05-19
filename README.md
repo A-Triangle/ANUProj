@@ -2,9 +2,8 @@
 
 # comparison.py
 
-A simple program which will search string for known interactions with a protein specified in the command line, then return a series of fasta files with the sequence of the target and interacting proteins. commented with steps.
+A simple program which will search string for known interactions with a specified protein, then return a series of fasta files with the sequence of the target and interacting proteins. 
 
-# mutated_comparison.py
+# proj2.py 
 
-performs same as above however also expects the position and amino acid mutation present in the variant and replaces wt with said specifications for comparison. formatted 'python3.
-Mutated_comparison.py [aa number] [aa letter]'
+some scripts i wrote to better analyse the alphafold structure of tnfaip3. (removes 'beads' from 'string' to focus on protein regions with function beyond being flexible linkers...)

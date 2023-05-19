@@ -2,7 +2,7 @@ import sys
 import requests
 import os
 import shutil
-from Bio import SeqIO
+from Bio import SeqIO-*                                             
 from Bio import Seq
 from Bio.Seq import MutableSeq
 
