@@ -1,3 +1,9 @@
 [submodule "Project_2/pae_to_domains"]
 	path = Project_2/pae_to_domains
 	url = https://github.com/tristanic/pae_to_domains.git
+[submodule "Dependancys/libzeep"]
+	path = Dependancys/libzeep
+	url = https://github.com/mhekkel/libzeep.git
+[submodule "Dependancys/date"]
+	path = Dependancys/date
+	url = https://github.com/HowardHinnant/date.git
