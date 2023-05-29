@@ -1,0 +1,45 @@
+2023-05-29 02:55:05,947 Unable to initialize backend 'rocm': NOT_FOUND: Could not find registered platform with name: "rocm". Available platform names are: Interpreter Host CUDA
+2023-05-29 02:55:05,949 Unable to initialize backend 'tpu': module 'jaxlib.xla_extension' has no attribute 'get_tpu_client'
+2023-05-29 02:55:05,949 Unable to initialize backend 'plugin': xla_extension has no attributes named get_plugin_device_client. Compile TensorFlow with //tensorflow/compiler/xla/python:enable_plugin_device set to true (defaults to false) to enable this.
+2023-05-29 02:55:11,277 Running on GPU
+2023-05-29 02:55:11,459 Found 7 citations for tools or databases
+2023-05-29 02:55:11,460 Query 1/1: 87g_a22d7 (length 360)
+2023-05-29 02:55:11,733 Sleeping for 10s. Reason: PENDING
+2023-05-29 02:55:22,026 Sleeping for 7s. Reason: RUNNING
+2023-05-29 02:55:29,310 Sleeping for 10s. Reason: RUNNING
+2023-05-29 02:55:52,006 Sequence 0 found templates: ['5lrx_A', '3zje_B', '5v3p_A', '3zrh_A', '5lrw_C', '6dx5_A', '3tmp_E', '4bop_A', '4bop_B', '4hxd_B', '3pfy_A', '6k9p_B', '6k9n_D']
+2023-05-29 02:55:52,571 Setting max_seq=512, max_extra_seq=1754
+2023-05-29 02:57:25,188 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=89.5 pTM=0.901
+2023-05-29 02:58:01,921 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=90.1 pTM=0.906 tol=0.404
+2023-05-29 02:58:39,768 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=90.7 pTM=0.91 tol=0.138
+2023-05-29 02:59:19,166 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=90.9 pTM=0.912 tol=0.0998
+2023-05-29 02:59:19,167 alphafold2_ptm_model_1_seed_000 took 186.2s (3 recycles)
+2023-05-29 02:59:59,101 alphafold2_ptm_model_2_seed_000 recycle=0 pLDDT=91.5 pTM=0.923
+2023-05-29 03:00:38,201 alphafold2_ptm_model_2_seed_000 recycle=1 pLDDT=91.2 pTM=0.921 tol=0.497
+2023-05-29 03:01:17,483 alphafold2_ptm_model_2_seed_000 recycle=2 pLDDT=91.4 pTM=0.921 tol=0.581
+2023-05-29 03:01:56,513 alphafold2_ptm_model_2_seed_000 recycle=3 pLDDT=91.4 pTM=0.921 tol=0.0969
+2023-05-29 03:01:56,515 alphafold2_ptm_model_2_seed_000 took 156.7s (3 recycles)
+2023-05-29 03:02:56,520 alphafold2_ptm_model_3_seed_000 recycle=0 pLDDT=87.9 pTM=0.894
+2023-05-29 03:03:34,975 alphafold2_ptm_model_3_seed_000 recycle=1 pLDDT=89.2 pTM=0.902 tol=0.627
+2023-05-29 03:04:13,367 alphafold2_ptm_model_3_seed_000 recycle=2 pLDDT=89.2 pTM=0.902 tol=0.189
+2023-05-29 03:04:51,921 alphafold2_ptm_model_3_seed_000 recycle=3 pLDDT=89.5 pTM=0.904 tol=0.0741
+2023-05-29 03:04:51,923 alphafold2_ptm_model_3_seed_000 took 175.0s (3 recycles)
+2023-05-29 03:05:30,701 alphafold2_ptm_model_4_seed_000 recycle=0 pLDDT=87.9 pTM=0.899
+2023-05-29 03:06:09,276 alphafold2_ptm_model_4_seed_000 recycle=1 pLDDT=88.9 pTM=0.903 tol=1.12
+2023-05-29 03:06:47,927 alphafold2_ptm_model_4_seed_000 recycle=2 pLDDT=88.9 pTM=0.903 tol=0.442
+2023-05-29 03:07:26,557 alphafold2_ptm_model_4_seed_000 recycle=3 pLDDT=89.2 pTM=0.905 tol=0.266
+2023-05-29 03:07:26,558 alphafold2_ptm_model_4_seed_000 took 154.2s (3 recycles)
+2023-05-29 03:08:05,736 alphafold2_ptm_model_5_seed_000 recycle=0 pLDDT=87.7 pTM=0.896
+2023-05-29 03:08:44,337 alphafold2_ptm_model_5_seed_000 recycle=1 pLDDT=88.6 pTM=0.9 tol=0.979
+2023-05-29 03:09:22,938 alphafold2_ptm_model_5_seed_000 recycle=2 pLDDT=88.8 pTM=0.903 tol=0.415
+2023-05-29 03:10:01,561 alphafold2_ptm_model_5_seed_000 recycle=3 pLDDT=88.9 pTM=0.903 tol=0.109
+2023-05-29 03:10:01,563 alphafold2_ptm_model_5_seed_000 took 154.4s (3 recycles)
+2023-05-29 03:10:02,265 reranking models by 'plddt' metric
+2023-05-29 03:10:03,571 Warning: importing 'simtk.openmm' is deprecated.  Import 'openmm' instead.
+2023-05-29 03:14:14,663 Relaxation took 252.4s
+2023-05-29 03:14:14,664 rank_001_alphafold2_ptm_model_2_seed_000 pLDDT=91.4 pTM=0.921
+2023-05-29 03:14:14,665 rank_002_alphafold2_ptm_model_1_seed_000 pLDDT=90.9 pTM=0.912
+2023-05-29 03:14:14,666 rank_003_alphafold2_ptm_model_3_seed_000 pLDDT=89.5 pTM=0.904
+2023-05-29 03:14:14,667 rank_004_alphafold2_ptm_model_4_seed_000 pLDDT=89.2 pTM=0.905
+2023-05-29 03:14:14,667 rank_005_alphafold2_ptm_model_5_seed_000 pLDDT=88.9 pTM=0.903
+2023-05-29 03:14:16,908 Done

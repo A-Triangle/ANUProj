@@ -165,7 +165,7 @@ def c_alpha_rmsd(model_ref, reference_filename, model_sample, sample_filename):
         j = i
         
         
-        while j < (j + 10) :
+        while j < len(sample_data) :
             
             #extracting l2 norms from the difference of 3x1 atom coordinate matrices
             #finds distance between any two CA atoms
