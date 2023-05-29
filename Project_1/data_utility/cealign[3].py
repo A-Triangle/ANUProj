@@ -117,7 +117,7 @@ def c_alpha_rmsd(reference_parameters, sample_parameters):
     reference_alignment = alignments[0][0,:]
     sample_alignment = alignments[0][1,:]
     
-    h = j = i = total_magnitude_CA = total_magnitude_CF = comparisons = 0
+    h = j = i = total_magnitude_CA = total_magnitude_CF = total_magnitude_dSASA = comparisons = 0
  
     while h < len(sample_alignment):
 
@@ -150,6 +150,7 @@ def c_alpha_rmsd(reference_parameters, sample_parameters):
             output['CF'].append(magnitude_comparison_CF)
         
             delta_SASA = reference_data[i]['SASA'] - sample_data[j]['SASA']
+            total_magnitude_dSASA = total_magnitude_dSASA + delta_SASA
             output['DSASA'].append(delta_SASA)
             
             output['Sec_structure'].append(reference_data[i]['secondary_structure'])
@@ -160,8 +161,9 @@ def c_alpha_rmsd(reference_parameters, sample_parameters):
         
         mean_CA = total_magnitude_CA/comparisons
         mean_CF = total_magnitude_CF/comparisons
+        mean_SASA = total_magnitude_dSASA/comparisons
         
-    return output, mean_CA, mean_CF
+    return output, mean_CA, mean_CF, mean_SASA
 
 def get_data(model, filename):
     
@@ -218,46 +220,33 @@ def data_processing(output, error, sample_filename, reference_filename):
 
     #doing data analysis to identify outlier residues for analysis.
     
-    data, mean_CA, mean_CF = output
-
-    sum_CA=0
-    for CA in data['CA']:
-        sum_CA = sum_CA + (CA - mean_CA)**2
-
-    standard_deviation_CA = math.sqrt(sum_CA/len(data['CA']))
-    print(standard_deviation_CA)
-
-    Outlier_CA = []
-    Outlier_CA_X=[]
-    for i, CA in enumerate(data['CA']):
-        if CA > 3*standard_deviation_CA:
-            Outlier_CA.append(CA)
-            Outlier_CA_X.append(i)
-
-    sum_CF=0
-    for CF in data['CF']:
-        sum_CF = sum_CF + (CF - mean_CF)**2
-
-    standard_deviation_CF = math.sqrt(sum_CF/len(data['CA']))
-    print(standard_deviation_CF)
-
-    Outlier_CF = []
-    Outlier_CF_X = []
-    for i, CF in enumerate(data['CF']):
-        if CF > 3*standard_deviation_CF:
-            Outlier_CF.append(CF)
-            Outlier_CF_X.append(i)
-
-    print(Outlier_CA, Outlier_CF)
+    data, mean_CA, mean_CF, mean_SASA = output
 
     #making output graphs
     
     for datapoint in ['CA','CF','DSASA']:
+
+        mean = 'mean_'+datapoint
+
+        sum=0
+        for value in data[datapoint]:
+            sum = sum + (value - mean)**2
+
+        standard_deviation = math.sqrt(sum/len(data[datapoint]))
+        print(standard_deviation)
+
+        Outlier_Y = []
+        Outlier_X = []
+        for i, value in enumerate(data[datapoint]):
+            if value > 3*standard_deviation:
+                Outlier_Y.append(value)
+                Outlier_X.append(i)
         
-        fig = 'fig_'+ datapoint
         fig, ax = plt.subplots(dpi=400)
         ax.plot(data['residue'], data[datapoint])
-        ax.scatter('Outlier_'+datapoint, 'Outlier_'+datapoint+'_X, ')
+
+        for outlier in Outlier_Y:
+            plt.annotate()
 
         #funky way of including a correct legend
         
@@ -278,9 +267,11 @@ def data_processing(output, error, sample_filename, reference_filename):
                 plt.axvspan(i,i+1, color ='yellow', alpha=0.1)
             elif structure == 'I':
                 plt.axvspan(i,i+1, color ='pink', alpha=0.1)
+
         plt.title(sample_filename + ' ' + reference_filename + ' ' + datapoint)
         plt.xlabel('Residue Number')
         plt.ylabel('Distance(Angstroms)')
+
         plt.legend()
 
         plt.savefig(f'output/{sample_filename}/{reference_filename}-{sample_filename}_{datapoint}')
