@@ -241,12 +241,17 @@ def data_processing(output, error, sample_filename, reference_filename):
             if value > 3*standard_deviation:
                 Outlier_Y.append(value)
                 Outlier_X.append(i)
+
+        print(Outlier_X, Outlier_Y)
         
         fig, ax = plt.subplots(dpi=400)
         ax.plot(data['residue'], data[datapoint])
 
-        for outlier in Outlier_Y:
-            plt.annotate()
+        for outlier in zip(Outlier_X,Outlier_Y):
+            plt.annotate(Outlier_X, xy=(Outlier_X,Outlier_Y), xycoords='data',
+                         xytext=(Outlier_X,Outlier_Y*standard_deviation), textcoords= 'data',
+                         arrowprops=dict(facecolor='black', shrink=0.05), horizontalalignment='right',
+                         verticalalignment='top')
 
         #funky way of including a correct legend
         
@@ -275,6 +280,9 @@ def data_processing(output, error, sample_filename, reference_filename):
         plt.legend()
 
         plt.savefig(f'output/{sample_filename}/{reference_filename}-{sample_filename}_{datapoint}')
+
+        with open(f'output/{sample_filename}/{datapoint}_Outliers') as file:
+            file.write(Outlier_X,Outlier_Y)
 
 if __name__ == '__main__':
     main()
