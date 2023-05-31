@@ -247,9 +247,9 @@ def data_processing(output, error, sample_filename, reference_filename):
         fig, ax = plt.subplots(dpi=400)
         ax.plot(data['residue'], data[datapoint])
 
-        for outlier in zip(Outlier_X,Outlier_Y):
-            plt.annotate(Outlier_X, xy=(Outlier_X,Outlier_Y), xycoords='data',
-                         xytext=(Outlier_X,Outlier_Y*standard_deviation), textcoords= 'data',
+        for x, y in zip(Outlier_X,Outlier_Y):
+            plt.annotate(x, xy=(x,y), xycoords='data',
+                         xytext=(x,y*standard_deviation), textcoords= 'data',
                          arrowprops=dict(facecolor='black', shrink=0.05), horizontalalignment='right',
                          verticalalignment='top')
 
