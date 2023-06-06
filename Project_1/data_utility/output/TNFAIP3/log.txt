@@ -1,0 +1,39 @@
+2023-06-05 08:42:00,148 Running colabfold 1.5.2 (0d63cbd596fe938e3c6724761497d739820508eb)
+2023-06-05 08:42:10,497 Running on GPU
+2023-06-05 08:42:13,447 Failed to extract font properties from /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf: In FT2Font: Can not load face (unknown file format; error code 0x2)
+2023-06-05 08:42:14,063 generated new fontManager
+2023-06-05 08:42:14,801 Found 4 citations for tools or databases
+2023-06-05 08:42:14,801 Query 1/1: sp_P21580_TNAP3_HUMAN_Tumor_necrosis_factor_alpha-induced_protein_3_OS_Homo_sapiens_OX_9606_GN_TNFAIP3_PE_1_SV_1 (length 790)
+2023-06-05 08:42:18,170 Setting max_seq=512, max_extra_seq=1647
+2023-06-05 08:43:49,445 alphafold2_ptm_model_1_seed_000 recycle=0 pLDDT=68.6 pTM=0.547
+2023-06-05 08:44:36,239 alphafold2_ptm_model_1_seed_000 recycle=1 pLDDT=70.9 pTM=0.549 tol=6.08
+2023-06-05 08:45:22,938 alphafold2_ptm_model_1_seed_000 recycle=2 pLDDT=71.6 pTM=0.54 tol=6.56
+2023-06-05 08:46:08,816 alphafold2_ptm_model_1_seed_000 recycle=3 pLDDT=71.9 pTM=0.542 tol=7.23
+2023-06-05 08:46:08,819 alphafold2_ptm_model_1_seed_000 took 219.4s (3 recycles)
+2023-06-05 08:46:56,400 alphafold2_ptm_model_2_seed_000 recycle=0 pLDDT=66.7 pTM=0.535
+2023-06-05 08:47:42,933 alphafold2_ptm_model_2_seed_000 recycle=1 pLDDT=68.7 pTM=0.524 tol=14.7
+2023-06-05 08:48:30,048 alphafold2_ptm_model_2_seed_000 recycle=2 pLDDT=67.8 pTM=0.518 tol=5.55
+2023-06-05 08:49:15,298 alphafold2_ptm_model_2_seed_000 recycle=3 pLDDT=68.6 pTM=0.512 tol=4.62
+2023-06-05 08:49:15,301 alphafold2_ptm_model_2_seed_000 took 186.0s (3 recycles)
+2023-06-05 08:50:01,685 alphafold2_ptm_model_3_seed_000 recycle=0 pLDDT=70.8 pTM=0.518
+2023-06-05 08:50:47,541 alphafold2_ptm_model_3_seed_000 recycle=1 pLDDT=72.4 pTM=0.519 tol=7.28
+2023-06-05 08:51:33,070 alphafold2_ptm_model_3_seed_000 recycle=2 pLDDT=72.1 pTM=0.533 tol=5.57
+2023-06-05 08:52:19,169 alphafold2_ptm_model_3_seed_000 recycle=3 pLDDT=72.1 pTM=0.527 tol=1.73
+2023-06-05 08:52:19,172 alphafold2_ptm_model_3_seed_000 took 183.5s (3 recycles)
+2023-06-05 08:53:05,090 alphafold2_ptm_model_4_seed_000 recycle=0 pLDDT=68.9 pTM=0.533
+2023-06-05 08:53:50,019 alphafold2_ptm_model_4_seed_000 recycle=1 pLDDT=70.6 pTM=0.53 tol=12.9
+2023-06-05 08:54:34,650 alphafold2_ptm_model_4_seed_000 recycle=2 pLDDT=70.2 pTM=0.545 tol=6.44
+2023-06-05 08:55:19,347 alphafold2_ptm_model_4_seed_000 recycle=3 pLDDT=70.1 pTM=0.538 tol=3.29
+2023-06-05 08:55:19,349 alphafold2_ptm_model_4_seed_000 took 179.8s (3 recycles)
+2023-06-05 08:56:04,334 alphafold2_ptm_model_5_seed_000 recycle=0 pLDDT=69.3 pTM=0.527
+2023-06-05 08:56:49,313 alphafold2_ptm_model_5_seed_000 recycle=1 pLDDT=70.3 pTM=0.526 tol=7.82
+2023-06-05 08:57:33,973 alphafold2_ptm_model_5_seed_000 recycle=2 pLDDT=70.6 pTM=0.52 tol=3.86
+2023-06-05 08:58:18,712 alphafold2_ptm_model_5_seed_000 recycle=3 pLDDT=70.7 pTM=0.519 tol=2.6
+2023-06-05 08:58:18,715 alphafold2_ptm_model_5_seed_000 took 179.0s (3 recycles)
+2023-06-05 08:58:19,115 reranking models by 'plddt' metric
+2023-06-05 08:58:19,115 rank_001_alphafold2_ptm_model_3_seed_000 pLDDT=72.1 pTM=0.527
+2023-06-05 08:58:19,115 rank_002_alphafold2_ptm_model_1_seed_000 pLDDT=71.9 pTM=0.542
+2023-06-05 08:58:19,115 rank_003_alphafold2_ptm_model_5_seed_000 pLDDT=70.7 pTM=0.519
+2023-06-05 08:58:19,115 rank_004_alphafold2_ptm_model_4_seed_000 pLDDT=70.1 pTM=0.538
+2023-06-05 08:58:19,116 rank_005_alphafold2_ptm_model_2_seed_000 pLDDT=68.6 pTM=0.512
+2023-06-05 08:58:21,605 Done

@@ -1,0 +1,38 @@
+2023-06-05 10:44:21,336 Unable to initialize backend 'rocm': NOT_FOUND: Could not find registered platform with name: "rocm". Available platform names are: Interpreter CUDA Host
+2023-06-05 10:44:21,337 Unable to initialize backend 'tpu': module 'jaxlib.xla_extension' has no attribute 'get_tpu_client'
+2023-06-05 10:44:21,338 Unable to initialize backend 'plugin': xla_extension has no attributes named get_plugin_device_client. Compile TensorFlow with //tensorflow/compiler/xla/python:enable_plugin_device set to true (defaults to false) to enable this.
+2023-06-05 10:44:26,446 Running on GPU
+2023-06-05 10:44:26,621 Found 7 citations for tools or databases
+2023-06-05 10:44:26,622 Query 1/1: ubiq_0dd1c (length 406)
+2023-06-05 10:44:27,260 Sleeping for 10s. Reason: PENDING
+2023-06-05 10:44:37,898 Sleeping for 9s. Reason: RUNNING
+2023-06-05 10:44:47,513 Sleeping for 9s. Reason: RUNNING
+2023-06-05 10:45:22,129 Sequence 0 found templates: ['5lrx_A', '3zje_B', '5v3p_A', '3zrh_A', '5lrw_C', '6dx5_A', '3tmp_E', '4bop_A', '4bop_B', '3pfy_A', '6k9p_B', '6k9n_D']
+2023-06-05 10:46:23,667 Sequence 1 found templates: ['5b83_A', '5b83_A', '5h07_A', '7eao_A', '7eal_D', '6a42_A', '7eal_D', '7eao_A', '5h07_A', '6ef3_u', '5cvm_B', '5b83_A', '5b83_A', '6nyo_E', '7r70_A', '7r70_B', '2ojr_A', '5h07_A', '7eao_A', '3vdz_A']
+2023-06-05 10:46:24,337 Sleeping for 7s. Reason: PENDING
+2023-06-05 10:46:31,956 Sleeping for 5s. Reason: RUNNING
+2023-06-05 10:46:39,668 Setting max_seq=508, max_extra_seq=2048
+2023-06-05 10:48:20,036 alphafold2_multimer_v3_model_1_seed_000 recycle=0 pLDDT=95.2 pTM=0.95 ipTM=0.924
+2023-06-05 10:49:07,545 alphafold2_multimer_v3_model_1_seed_000 recycle=1 pLDDT=94.3 pTM=0.94 ipTM=0.887 tol=0.203
+2023-06-05 10:49:07,547 alphafold2_multimer_v3_model_1_seed_000 took 142.2s (1 recycles)
+2023-06-05 10:49:55,620 alphafold2_multimer_v3_model_2_seed_000 recycle=0 pLDDT=93.6 pTM=0.936 ipTM=0.9
+2023-06-05 10:50:43,139 alphafold2_multimer_v3_model_2_seed_000 recycle=1 pLDDT=93.9 pTM=0.938 ipTM=0.901 tol=0.197
+2023-06-05 10:50:43,140 alphafold2_multimer_v3_model_2_seed_000 took 94.8s (1 recycles)
+2023-06-05 10:51:31,173 alphafold2_multimer_v3_model_3_seed_000 recycle=0 pLDDT=93.9 pTM=0.938 ipTM=0.901
+2023-06-05 10:52:18,732 alphafold2_multimer_v3_model_3_seed_000 recycle=1 pLDDT=93.5 pTM=0.932 ipTM=0.882 tol=0.291
+2023-06-05 10:52:18,735 alphafold2_multimer_v3_model_3_seed_000 took 94.9s (1 recycles)
+2023-06-05 10:53:06,745 alphafold2_multimer_v3_model_4_seed_000 recycle=0 pLDDT=94.5 pTM=0.943 ipTM=0.913
+2023-06-05 10:53:54,319 alphafold2_multimer_v3_model_4_seed_000 recycle=1 pLDDT=93.7 pTM=0.934 ipTM=0.877 tol=0.232
+2023-06-05 10:53:54,321 alphafold2_multimer_v3_model_4_seed_000 took 94.9s (1 recycles)
+2023-06-05 10:54:42,321 alphafold2_multimer_v3_model_5_seed_000 recycle=0 pLDDT=93.2 pTM=0.935 ipTM=0.882
+2023-06-05 10:55:29,666 alphafold2_multimer_v3_model_5_seed_000 recycle=1 pLDDT=92.6 pTM=0.924 ipTM=0.843 tol=0.228
+2023-06-05 10:55:29,667 alphafold2_multimer_v3_model_5_seed_000 took 94.6s (1 recycles)
+2023-06-05 10:55:30,086 reranking models by 'multimer' metric
+2023-06-05 10:55:31,220 Warning: importing 'simtk.openmm' is deprecated.  Import 'openmm' instead.
+2023-06-05 11:00:04,953 Relaxation took 274.9s
+2023-06-05 11:00:04,954 rank_001_alphafold2_multimer_v3_model_2_seed_000 pLDDT=93.9 pTM=0.938 ipTM=0.901
+2023-06-05 11:00:04,955 rank_002_alphafold2_multimer_v3_model_1_seed_000 pLDDT=94.3 pTM=0.94 ipTM=0.887
+2023-06-05 11:00:04,955 rank_003_alphafold2_multimer_v3_model_3_seed_000 pLDDT=93.5 pTM=0.932 ipTM=0.882
+2023-06-05 11:00:04,956 rank_004_alphafold2_multimer_v3_model_4_seed_000 pLDDT=93.7 pTM=0.934 ipTM=0.877
+2023-06-05 11:00:04,957 rank_005_alphafold2_multimer_v3_model_5_seed_000 pLDDT=92.6 pTM=0.924 ipTM=0.843
+2023-06-05 11:00:07,149 Done

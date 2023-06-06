@@ -17,12 +17,14 @@ def main():
     
     parser = argparse.ArgumentParser(description='Alignes input structures and calculates structure wide RMSD, by residue RMSD, and by reside delta c alpha for analysis. Outputs aligned model.')
 
-    parser.add_argument('reference_filename', metavar='reference_filename', type=str, help='enter the filename of .fasta target sequence')
-    parser.add_argument('sample_filename', metavar='sample_filename', type=str, help='enter the filename of the .txt mut_list file')
+    parser.add_argument('reference_filename', metavar='reference_filename', type=str, help='enter the filename of a reference structre')
+    parser.add_argument('sample_filename', metavar='sample_filename', type=str, help='enter the filename of the comparison structure')
+    parser.add_argument('Sigma', metavar='Sigma', type=int, help='enter the number of significant figures to consider a residue an outlier')
     args = parser.parse_args()
 
     reference_filename = args.reference_filename.removesuffix(".pdb")
     sample_filename = args.sample_filename.removesuffix(".pdb")
+    num = args.Sigma
 
 
     #Organising filesystem
@@ -56,13 +58,14 @@ def main():
     
     
     error, model_ref, model_sample = align_structures(model_ref, model_sample)
+    print(f'the overall alignment error is: {error}')
     
     sample_parameters = get_data(model_sample, sample_filename)
     reference_parameters = get_data(model_ref, reference_filename)
     
     output = c_alpha_rmsd(reference_parameters, sample_parameters)  
     
-    data_processing(output, error, sample_filename, reference_filename) 
+    data_processing(output, num, sample_filename, reference_filename) 
     
     
    #Writing output files 
@@ -117,7 +120,7 @@ def c_alpha_rmsd(reference_parameters, sample_parameters):
     reference_alignment = alignments[0][0,:]
     sample_alignment = alignments[0][1,:]
     
-    h = j = i = total_magnitude_CA = total_magnitude_CF = total_magnitude_dSASA = comparisons = 0
+    h = j = i = comparisons = 0
  
     while h < len(sample_alignment):
 
@@ -141,17 +144,14 @@ def c_alpha_rmsd(reference_parameters, sample_parameters):
             
             comparison_CA = (reference_data[i]['residue_CA'] - sample_data[j]['residue_CA']) 
             magnitude_comparison_CA=norm(comparison_CA, 2)
-            total_magnitude_CA = total_magnitude_CA + magnitude_comparison_CA
             output['CA'].append(magnitude_comparison_CA)
         
             comparison_CF = (reference_data[i] ['residue_CF'] - sample_data[j]['residue_CF']) 
             magnitude_comparison_CF=norm(comparison_CF, 2)
-            total_magnitude_CF = total_magnitude_CF + magnitude_comparison_CF
             output['CF'].append(magnitude_comparison_CF)
         
             delta_SASA = reference_data[i]['SASA'] - sample_data[j]['SASA']
-            total_magnitude_dSASA = total_magnitude_dSASA + delta_SASA
-            output['DSASA'].append(delta_SASA)
+            output['DSASA'].append(abs(delta_SASA))
             
             output['Sec_structure'].append(reference_data[i]['secondary_structure'])
             
@@ -159,11 +159,8 @@ def c_alpha_rmsd(reference_parameters, sample_parameters):
             
             i += 1; j += 1; h += 1
         
-        mean_CA = total_magnitude_CA/comparisons
-        mean_CF = total_magnitude_CF/comparisons
-        mean_SASA = total_magnitude_dSASA/comparisons
         
-    return output, mean_CA, mean_CF, mean_SASA
+    return output
 
 def get_data(model, filename):
     
@@ -216,42 +213,51 @@ def get_data(model, filename):
         return (sequence,data)
             
 
-def data_processing(output, error, sample_filename, reference_filename):
+def data_processing(output, num, sample_filename, reference_filename):
 
     #doing data analysis to identify outlier residues for analysis.
-    
-    data, mean_CA, mean_CF, mean_SASA = output
 
     #making output graphs
     
     for datapoint in ['CA','CF','DSASA']:
-
-        mean = 'mean_'+datapoint
+        
+        total = 0
+        largest = 0
+        for value in output[datapoint]:
+            total = total + value
+            if value > largest:
+                largest = value
+            
+        
+        mean = total/len(output[datapoint])
 
         sum=0
-        for value in data[datapoint]:
+        for value in output[datapoint]:
             sum = sum + (value - mean)**2
 
-        standard_deviation = math.sqrt(sum/len(data[datapoint]))
-        print(standard_deviation)
+        standard_deviation = math.sqrt(sum/len(output[datapoint]))
 
         Outlier_Y = []
         Outlier_X = []
-        for i, value in enumerate(data[datapoint]):
-            if value > 3*standard_deviation:
+        for i, value in enumerate(output[datapoint]):
+            if value > num*standard_deviation:
                 Outlier_Y.append(value)
                 Outlier_X.append(i)
-
-        print(Outlier_X, Outlier_Y)
         
         fig, ax = plt.subplots(dpi=400)
-        ax.plot(data['residue'], data[datapoint])
+        ax.plot(output['residue'], output[datapoint])
+        plt.ylim(0,1.3*largest)
+        
+        with open(f'output/{sample_filename}/{datapoint}_Outliers.txt', 'w+') as file:
 
-        for x, y in zip(Outlier_X,Outlier_Y):
-            plt.annotate(x, xy=(x,y), xycoords='data',
-                         xytext=(x,y*standard_deviation), textcoords= 'data',
-                         arrowprops=dict(facecolor='black', shrink=0.05), horizontalalignment='right',
-                         verticalalignment='top')
+            i=0
+            for x, y in zip(Outlier_X,Outlier_Y):
+                i += 1
+                plt.annotate(x, xy=(x,y), xycoords='data', fontsize = 8,
+                            xytext=(0.15+0.037*i,0.8), textcoords= 'figure fraction',
+                            arrowprops=dict(facecolor='black', shrink=0.10, width = 0.1, headwidth = 4), horizontalalignment='right',
+                            verticalalignment='top')
+                file.write(str(x)+','+str(y)+'\n')
 
         #funky way of including a correct legend
         
@@ -261,7 +267,7 @@ def data_processing(output, error, sample_filename, reference_filename):
         plt.axvspan(0,0, color ='yellow', alpha=0.1, label = '310-Helix')
         plt.axvspan(0,0, color ='pink', alpha=0.1, label = 'Pi-Helix')
         
-        for i, structure in enumerate(data['Sec_structure']):
+        for i, structure in enumerate(output['Sec_structure']):
             if structure == 'L':
                 plt.axvspan(i,i+1, color ='red', alpha=0.1)
             elif structure == 'E':
@@ -281,8 +287,6 @@ def data_processing(output, error, sample_filename, reference_filename):
 
         plt.savefig(f'output/{sample_filename}/{reference_filename}-{sample_filename}_{datapoint}')
 
-        with open(f'output/{sample_filename}/{datapoint}_Outliers') as file:
-            file.write(Outlier_X,Outlier_Y)
 
 if __name__ == '__main__':
     main()
